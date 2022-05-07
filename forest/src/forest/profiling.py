@@ -17,14 +17,6 @@ from .data import get_data
     show_default=True
 )
 
-@click.option(
-    "-s",
-    "--save-model-path",
-    default="data/model.joblib",
-    type=click.Path(dir_okay=False, writable=True, path_type=Path),
-    show_default=True
-)
-
 def profile_report(
     dataset_path: Path,
     ) -> None:
