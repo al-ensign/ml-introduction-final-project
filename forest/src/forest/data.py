@@ -4,24 +4,47 @@ from typing import Tuple
 
 import click
 import pandas as pd
-#from sklearn.model_selection import train_test_split
+import numpy as np
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.feature_selection import SelectFromModel
+from boruta import BorutaPy
+from sklearn.ensemble import RandomForestClassifier
+
 
 #Remove test_split devision from demo_project code 
 #Will use K-Fold cross-validation in train
 def get_dataset(
     csv_path: Path, 
-    #random_state: int, 
-    #test_split_ratio: float
-    #) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+    feature_select_method: int,
     ) -> Tuple[pd.DataFrame, pd.Series]: 
+
     dataset = pd.read_csv(csv_path)
-    click.echo(f"Dataset shape: {dataset.shape}.")
-    features = dataset.drop("target", axis=1)
-    target = dataset["target"]
-    #    features_train, features_val, target_train, target_val = train_test_split(
-    #    features, target, test_size=test_split_ratio, random_state=random_state    
-    #)
-    #return features_train, features_val, target_train, target_val
+
+    features = data.drop(columns=["Cover_Type"])    
+    target = data['Cover_Type']
+
+    if feature_select_method == 0:
+        return features, target
+
+    elif feature_select_method == 1:
+
+        extra_trees = ExtraTreesClassifier(n_estimators=40)
+        extra_trees.fit(features, target)
+        model = SelectFromModel(extra_trees, prefit=True)
+
+    elif feature_select_method == 2:
+
+        model = BorutaPy(RandomForestClassifier(max_depth=5), 
+                                n_estimators=200, 
+                                min_samples_leaf=0.2,
+                                criterion="gini"
+                                max_iter=100,
+                                random_state=42)
+
+        model.fit(np.asarray(features), np.asarray(target))
+
+    return model.transform(np.asarray(features)), target
+
     return features, target
 
 #Get the data for EDA with Pandas Profiling

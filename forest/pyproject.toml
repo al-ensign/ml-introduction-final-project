@@ -11,6 +11,7 @@ pandas = "^1.4.2"
 sklearn = "^0.0"
 mlflow = "^1.25.1"
 pandas-profiling = "^3.2.0"
+Boruta = "^0.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
