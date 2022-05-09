@@ -3,9 +3,6 @@ from joblib import dump
 
 import click
 import pandas as pd
-import sys
-import os
-import warnings
 import pandas_profiling
 
 import mlflow.sklearn
