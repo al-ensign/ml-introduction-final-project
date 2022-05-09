@@ -34,12 +34,11 @@ def get_dataset(
 
     elif feature_select_method == 2:
 
-        model = BorutaPy(RandomForestClassifier(max_depth=5), 
+        model = BorutaPy(RandomForestClassifier(max_depth=5, 
                                 n_estimators=200, 
                                 min_samples_leaf=0.2,
-                                criterion="gini"
-                                max_iter=100,
-                                random_state=42)
+                                criterion="gini",
+                                random_state=42))
 
         model.fit(np.asarray(features), np.asarray(target))
 

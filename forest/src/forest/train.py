@@ -30,7 +30,7 @@ from .pipeline import create_pipeline
 )
 
 @click.option(
-    "--feature-select_method",
+    "--feature_select_method",
     default=0,
     type=int,
     show_default=True
@@ -123,7 +123,7 @@ def train(
 
 ) -> None:
 
-    features, target = get_dataset(dataset_path, feature_select)
+    features, target = get_dataset(dataset_path, feature_select_method)
 
     with mlflow.start_run():
     
@@ -131,7 +131,7 @@ def train(
             use_scaler, max_iter, logreg_c, random_state, second_model, n_estimators, criterion, min_samples_leaf, max_depth
             )
 
-            cv_results = cross_validate(pipeline, features, target, cv=k_folds, scoring=('accuracy', 'f1', 'roc_auc'),)
+        cv_results = cross_validate(pipeline, features, target, cv=k_folds, scoring=('accuracy', 'f1', 'roc_auc'),)
         
         if second_model:
             mlflow.log_param("n_estimators", n_estimators)
