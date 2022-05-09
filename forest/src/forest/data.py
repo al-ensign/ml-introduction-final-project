@@ -20,8 +20,8 @@ def get_dataset(
 
     dataset = pd.read_csv(csv_path)
 
-    features = data.drop(columns=["Cover_Type"])    
-    target = data['Cover_Type']
+    features = dataset.drop(columns=["Cover_Type"])    
+    target = dataset['Cover_Type']
 
     if feature_select_method == 0:
         return features, target
@@ -35,7 +35,7 @@ def get_dataset(
     elif feature_select_method == 2:
 
         model = BorutaPy(RandomForestClassifier(max_depth=5, 
-                                n_estimators=200, 
+                                n_estimators=100, 
                                 min_samples_leaf=0.2,
                                 criterion="gini",
                                 random_state=42))
