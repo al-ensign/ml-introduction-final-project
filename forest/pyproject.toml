@@ -22,6 +22,7 @@ flake8 = "^4.0.1"
 [tool.poetry.scripts]
 train = "forest.train:train"
 profile = "forest.profiling:profile_report"
+train_nested_cv = "forest.train_nested_cv:train_nested_cv"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

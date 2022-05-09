@@ -30,7 +30,7 @@ def create_pipeline(
             (
                 "logreg",
                 LogisticRegression(
-                    random_state=random_state, max_iter=max_iter, C=logreg_C, 
+                    random_state=random_state, max_iter=max_iter, C=logreg_c, 
                 ),
             )
         )        
