@@ -18,7 +18,7 @@
 
 Download [Forest Cover Type Prediction](https://www.kaggle.com/competitions/forest-cover-type-prediction/data), save csv locally (default path is data/train.csv in repository's root).
 
-==ML_final_project contains two folders: "forest" and "screenshots". The "forest folder" contains package and is used as root.==
+**ML_final_project contains two folders: "forest" and "screenshots". The "forest folder" contains package and is used as root.**
 
 ### Step 3: Run Python 3.9 and Poetry
 
