@@ -3,9 +3,17 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MinMaxScaler
 
+
 def create_pipeline(
-    use_scaler: bool, max_iter: int, logreg_C: float, random_state: int, second_model: bool, n_estimators:int,
-    criterion: str, min_samples_leaf: float, max_depth: int
+    use_scaler: bool,
+    max_iter: int,
+    logreg_c: float,
+    random_state: int,
+    second_model: bool,
+    n_estimators: int,
+    criterion: str,
+    min_samples_leaf: float,
+    max_depth: int,
 ) -> Pipeline:
     pipeline_steps = []
 
@@ -21,7 +29,7 @@ def create_pipeline(
                     criterion=criterion,
                     min_samples_leaf=min_samples_leaf,
                     max_depth=max_depth,
-                    random_state=random_state, 
+                    random_state=random_state,
                 ),
             )
         )
@@ -30,9 +38,11 @@ def create_pipeline(
             (
                 "logreg",
                 LogisticRegression(
-                    random_state=random_state, max_iter=max_iter, C=logreg_c, 
+                    random_state=random_state,
+                    max_iter=max_iter,
+                    C=logreg_c,
                 ),
             )
-        )        
+        )
 
     return Pipeline(steps=pipeline_steps)

@@ -2,7 +2,6 @@ from pathlib import Path
 from joblib import dump
 
 import click
-import pandas as pd
 
 import mlflow.sklearn
 import mlflow
@@ -15,100 +14,78 @@ import sys
 import os
 import warnings
 
+
 @click.command()
 @click.option(
     "-d",
     "--dataset-path",
     default="data/train.csv",
     type=click.Path(exists=True, dir_okay=False, path_type=Path),
-    show_default=True
+    show_default=True,
 )
-
 @click.option(
     "-s",
     "--save-model-path",
     default="data/model.joblib",
     type=click.Path(dir_okay=False, writable=True, path_type=Path),
-    show_default=True
+    show_default=True,
 )
-
-@click.option(
-    "--feature_select_method",
-    default=0,
-    type=int,
-    show_default=True
-)
-
-@click.option(
-    "--random-state",
-    default=42,
-    type=int,
-    show_default=True
-)
-
+@click.option("--feature_select_method", default=0, type=int, show_default=True)
+@click.option("--random-state", default=42, type=int, show_default=True)
 @click.option(
     "--use-scaler",
     default=True,
     type=bool,
     show_default=True,
 )
-
 @click.option(
     "--max-iter",
     default=100,
     type=int,
     show_default=True,
 )
-
 @click.option(
     "--logreg-c",
     default=1.0,
     type=float,
     show_default=True,
 )
-
 @click.option(
     "--k_folds",
     default=5,
     type=int,
     show_default=True,
 )
-
 @click.option(
     "--second-model",
     default=False,
     type=bool,
     show_default=True,
 )
-
 @click.option(
     "--n_estimators",
     default=100,
     type=int,
     show_default=True,
 )
-
 @click.option(
     "--criterion",
     default="gini",
     type=str,
     show_default=True,
 )
-
 @click.option(
     "--min_samples_leaf",
     default=0.1,
     type=float,
     show_default=True,
 )
-
 @click.option(
     "--max-depth",
     default=5,
     type=int,
     show_default=True,
 )
-
 def train(
     dataset_path: Path,
     save_model_path: Path,
@@ -123,7 +100,6 @@ def train(
     criterion: str,
     min_samples_leaf: float,
     max_depth: int,
-
 ) -> None:
 
     if not sys.warnoptions:
@@ -133,13 +109,28 @@ def train(
         features, target = get_dataset(dataset_path, feature_select_method)
 
     with mlflow.start_run():
-    
-        pipeline = create_pipeline(
-            use_scaler, max_iter, logreg_c, random_state, second_model, n_estimators, criterion, min_samples_leaf, max_depth
-            )
 
-        cv_results = cross_validate(pipeline, features, target, cv=k_folds, scoring=('accuracy', 'f1_macro', 'roc_auc_ovr'),error_score="raise")
-        
+        pipeline = create_pipeline(
+            use_scaler,
+            max_iter,
+            logreg_c,
+            random_state,
+            second_model,
+            n_estimators,
+            criterion,
+            min_samples_leaf,
+            max_depth,
+        )
+
+        cv_results = cross_validate(
+            pipeline,
+            features,
+            target,
+            cv=k_folds,
+            scoring=("accuracy", "f1_macro", "roc_auc_ovr"),
+            error_score="raise",
+        )
+
         if second_model:
             mlflow.log_param("n_estimators", n_estimators)
             mlflow.log_param("criterion", criterion)
@@ -151,17 +142,17 @@ def train(
             mlflow.log_param("max_iter", max_iter)
             mlflow.log_param("logreg_c", logreg_c)
             mlflow.log_param("model_type", "LogisticRegression")
-             
+
         mlflow.log_param("feature_select_method", feature_select_method)
         mlflow.log_param("k_folds", k_folds)
-            
-        mlflow.log_metric("accuracy", cv_results['test_accuracy'].mean())
-        mlflow.log_metric("f1_score", cv_results['test_f1_macro'].mean())
-        mlflow.log_metric("roc_value", cv_results['test_roc_auc_ovr'].mean())
-    
+
+        mlflow.log_metric("accuracy", cv_results["test_accuracy"].mean())
+        mlflow.log_metric("f1_score", cv_results["test_f1_macro"].mean())
+        mlflow.log_metric("roc_value", cv_results["test_roc_auc_ovr"].mean())
+
         dump(pipeline, save_model_path)
         click.echo(f"Saved to {save_model_path}.")
-        click.echo(f"Cross-validation scores :") 
-        click.echo(f"accuracy : {cv_results['test_accuracy'].mean()}.") 
+        click.echo("Cross-validation scores :")
+        click.echo(f"accuracy : {cv_results['test_accuracy'].mean()}.")
         click.echo(f"f1_score : {cv_results['test_f1_macro'].mean()}.")
-        click.echo(f"roc_value : {cv_results['test_roc_auc_ovr'].mean()}.") 
+        click.echo(f"roc_value : {cv_results['test_roc_auc_ovr'].mean()}.")
