@@ -48,7 +48,7 @@ poetry run train --help
 ```
 - You can also use poetry scripts to execute train (default path) or get EDA (Pandas Profiling Report):
 ```python=4
-poetry run profile_report
+poetry run profile
 poetry run train
 ```
 - Track your experiments results in MLflow UI:
@@ -79,14 +79,26 @@ Now you can use additional developer tools.
 ```python=8
 poetry run pytest
 ```
-- Run tests
+- Run black for code formatting
 ```python=9
-poetry 
+poetry run black src 
 ```
-- Run tests
+
+![](https://i.imgur.com/iyAsPFB.png)
+
+
+- Run flake8 for code linting
 ```python=10
-poetry 
+poetry run flake8
 ```
+![](https://i.imgur.com/h832IFC.png)
+
+- Run mypy for typechecking
+```python=11
+poetry run mypy
+```
+![](https://i.imgur.com/TPmezio.png)
+
 
 ---
 
