@@ -119,56 +119,56 @@ def train_nested_cv(
         os.environ["PYTHONWARNINGS"] = "ignore"
 
         features, target = get_dataset(dataset_path, feature_select_method)
-# Sample Nested CV from https://machinelearningmastery.com/nested-cross-validation-for-machine-learning-with-python/
-# create dataset
-#X, y = make_classification(n_samples=1000, n_features=20, random_state=1, n_informative=10, n_redundant=10)
-# configure the cross-validation procedure
-#cv_outer = KFold(n_splits=10, shuffle=True, random_state=1)
-# enumerate splits
-#outer_results = list()
-#for train_ix, test_ix in cv_outer.split(X):
-    # split data
-    #X_train, X_test = X[train_ix, :], X[test_ix, :]
-    #y_train, y_test = y[train_ix], y[test_ix]
+    # Sample Nested CV from https://machinelearningmastery.com/nested-cross-validation-for-machine-learning-with-python/
+    # create dataset
+    # X, y = make_classification(n_samples=1000, n_features=20, random_state=1, n_informative=10, n_redundant=10)
     # configure the cross-validation procedure
-    #cv_inner = KFold(n_splits=3, shuffle=True, random_state=1)
-    #configure pipeline
-    #model = LogisticRegression()
-    #rfe = RFE(estimator=LogisticRegression())
-    #pipe = Pipeline(steps=[('rfe', rfe), ('model', model)])
+    # cv_outer = KFold(n_splits=10, shuffle=True, random_state=1)
+    # enumerate splits
+    # outer_results = list()
+    # for train_ix, test_ix in cv_outer.split(X):
+    # split data
+    # X_train, X_test = X[train_ix, :], X[test_ix, :]
+    # y_train, y_test = y[train_ix], y[test_ix]
+    # configure the cross-validation procedure
+    # cv_inner = KFold(n_splits=3, shuffle=True, random_state=1)
+    # configure pipeline
+    # model = LogisticRegression()
+    # rfe = RFE(estimator=LogisticRegression())
+    # pipe = Pipeline(steps=[('rfe', rfe), ('model', model)])
     # hyperparamater options
-    #n_features_to_select_options = np.arange(1,len(X[0])+1,1)
-    #c_options = [1, 10, 100, 1000]
-    #solver_options = ['newton-cg', 'lbfgs', 'liblinear']
-    #penalty = ['l2']
-    #parameter grid
-    #param_grid = [
-       # {
-        #'rfe__n_features_to_select': n_features_to_select_options,
-        #'model__C': c_options,
-        #'model__solver': solver_options,
-        #'model__penalty': penalty
-        #}
-    #]
+    # n_features_to_select_options = np.arange(1,len(X[0])+1,1)
+    # c_options = [1, 10, 100, 1000]
+    # solver_options = ['newton-cg', 'lbfgs', 'liblinear']
+    # penalty = ['l2']
+    # parameter grid
+    # param_grid = [
+    # {
+    #'rfe__n_features_to_select': n_features_to_select_options,
+    #'model__C': c_options,
+    #'model__solver': solver_options,
+    #'model__penalty': penalty
+    # }
+    # ]
     # define search
-    #search = GridSearchCV(pipe, n_jobs=1, param_grid=param_grid, cv=cv_inner, refit=True)    
+    # search = GridSearchCV(pipe, n_jobs=1, param_grid=param_grid, cv=cv_inner, refit=True)
     # execute search
-    #result = search.fit(X_train, y_train)
+    # result = search.fit(X_train, y_train)
     # get the best performing model fit on the whole training set
-    #best_model = result.best_estimator_
+    # best_model = result.best_estimator_
     # evaluate model on the hold out dataset
-    #yhat = best_model.predict(X_test)
+    # yhat = best_model.predict(X_test)
     # evaluate the model
-    #accuracy = accuracy_score(y_test, yhat)
+    # accuracy = accuracy_score(y_test, yhat)
     # store the result
-    #outer_results.append(accuracy)
+    # outer_results.append(accuracy)
     # report progress
-    #print('>accuracy=%.3f, est=%.3f, cfg=%s' % (accuracy, result.best_score_, result.best_params_))
-# summarize the estimated performance of the model
-#print('accuracy: %.3f (%.3f)' % (mean(outer_results), std(outer_results)))
+    # print('>accuracy=%.3f, est=%.3f, cfg=%s' % (accuracy, result.best_score_, result.best_params_))
+    # summarize the estimated performance of the model
+    # print('accuracy: %.3f (%.3f)' % (mean(outer_results), std(outer_results)))
 
     if second_model:
-        cv_outer = KFold(n_splits=10,shuffle=True, random_state=random_state)
+        cv_outer = KFold(n_splits=10, shuffle=True, random_state=random_state)
         cv_inner = KFold(n_splits=3, shuffle=True, random_state=random_state)
         rf = RandomForestClassifier(
             n_estimators=n_estimators,
@@ -190,28 +190,26 @@ def train_nested_cv(
         roc_auc_score_rf, accuracy_score_rf, f1_score_rf = list(), list(), list()
 
         for train_index, test_index in cv_outer.split(features, target):
-                X_train, X_test = (
-                    features.iloc[train_index, :],
-                    features.iloc[test_index, :],
-                )
-                y_train, y_test = target[train_index], target[test_index]
-        search_rf.fit(X_train,y_train)
-        best_rf=search_rf.best_estimator_
-        accuracy_rf=accuracy_score(best_rf.predict(X_test), y_test)
+            X_train, X_test = (
+                features.iloc[train_index, :],
+                features.iloc[test_index, :],
+            )
+            y_train, y_test = target[train_index], target[test_index]
+        search_rf.fit(X_train, y_train)
+        best_rf = search_rf.best_estimator_
+        accuracy_rf = accuracy_score(best_rf.predict(X_test), y_test)
         roc_rf = roc_auc_score(
-                    y_test,
-                    best_rf.predict_proba(X_test),
-                    multi_class="ovr",
-                    average="macro",
-                )
-        f1_rf=f1_score(
-                    y_test, best_rf.predict(X_test), average="macro"
-                )
+            y_test,
+            best_rf.predict_proba(X_test),
+            multi_class="ovr",
+            average="macro",
+        )
+        f1_rf = f1_score(y_test, best_rf.predict(X_test), average="macro")
         roc_auc_score_rf.append(roc_rf)
         accuracy_score_rf.append(accuracy_rf)
         f1_score_rf.append(f1_rf)
-        print("ROC AUC score: ",np.mean(roc_auc_score_rf))
-        print("Accuracy score: ",np.mean(accuracy_score_rf))
+        print("ROC AUC score: ", np.mean(roc_auc_score_rf))
+        print("Accuracy score: ", np.mean(accuracy_score_rf))
         print("F1 score: ", np.mean(f1_score_rf))
 
     else:
@@ -234,27 +232,29 @@ def train_nested_cv(
             refit=True,
         )
         cv_outer_2 = KFold(n_splits=10, shuffle=True, random_state=random_state)
-        
-        roc_auc_score_logreg, accuracy_score_logreg, f1_score_logreg = list(), list(), list()
+
+        roc_auc_score_logreg, accuracy_score_logreg, f1_score_logreg = (
+            list(),
+            list(),
+            list(),
+        )
 
         for train_index, test_index in cv_outer_2.split(features, target):
-                X_train, X_test = (
-                    features.iloc[train_index, :],
-                    features.iloc[test_index, :],
-                )
-                y_train, y_test = target[train_index], target[test_index]
-        search_logreg.fit(X_train,y_train)
-        best_logreg=search_logreg.best_estimator_
-        accuracy_logreg=accuracy_score(best_logreg.predict(X_test), y_test)
+            X_train, X_test = (
+                features.iloc[train_index, :],
+                features.iloc[test_index, :],
+            )
+            y_train, y_test = target[train_index], target[test_index]
+        search_logreg.fit(X_train, y_train)
+        best_logreg = search_logreg.best_estimator_
+        accuracy_logreg = accuracy_score(best_logreg.predict(X_test), y_test)
         roc_logreg = roc_auc_score(
-                    y_test,
-                    best_logreg.predict_proba(X_test),
-                    multi_class="ovr",
-                    average="macro",
-                )
-        f1_logreg=f1_score(
-                    y_test, best_logreg.predict(X_test), average="macro"
-                )
+            y_test,
+            best_logreg.predict_proba(X_test),
+            multi_class="ovr",
+            average="macro",
+        )
+        f1_logreg = f1_score(y_test, best_logreg.predict(X_test), average="macro")
         roc_auc_score_logreg.append(roc_logreg)
         accuracy_score_logreg.append(accuracy_logreg)
         f1_score_logreg.append(f1_rf)
@@ -262,4 +262,3 @@ def train_nested_cv(
         print("ROC AUC score: ", np.mean(roc_auc_score_logreg))
         print("Accuracy score: ", np.mean(accuracy_score_logreg))
         print("F1 score: ", np.mean(f1_score_logreg))
-        
