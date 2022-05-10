@@ -63,24 +63,31 @@ poetry run mlflow ui
 > 
 > ![](https://i.imgur.com/kensYPR.png)
 
+- You can try Nested CrossValidation for models:
+```python=7
+poetry run train_nested_cv --second-model True
+```
+
+![](https://i.imgur.com/tMAd0fR.png)
+
 
 ### Step 5: Install development dependencies (Optional)
 
 You need to install Development dependencies to run tests, format code and pass typeckeching before committing to GitHub.
 
 - Install all requirements (including dev requirements) to poetry environment:
-```python=7
+```python=8
 poetry install
 ```
 
 Now you can use additional developer tools.
 
 - Run tests
-```python=8
+```python=9
 poetry run pytest
 ```
 - Run black for code formatting
-```python=9
+```python=10
 poetry run black src 
 ```
 
@@ -88,13 +95,13 @@ poetry run black src
 
 
 - Run flake8 for code linting
-```python=10
+```python=11
 poetry run flake8
 ```
 ![](https://i.imgur.com/h832IFC.png)
 
 - Run mypy for typechecking
-```python=11
+```python=12
 poetry run mypy
 ```
 ![](https://i.imgur.com/TPmezio.png)
