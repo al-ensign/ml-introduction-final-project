@@ -119,53 +119,6 @@ def train_nested_cv(
         os.environ["PYTHONWARNINGS"] = "ignore"
 
         features, target = get_dataset(dataset_path, feature_select_method)
-    # Sample Nested CV from https://machinelearningmastery.com/nested-cross-validation-for-machine-learning-with-python/
-    # create dataset
-    # X, y = make_classification(n_samples=1000, n_features=20, random_state=1, n_informative=10, n_redundant=10)
-    # configure the cross-validation procedure
-    # cv_outer = KFold(n_splits=10, shuffle=True, random_state=1)
-    # enumerate splits
-    # outer_results = list()
-    # for train_ix, test_ix in cv_outer.split(X):
-    # split data
-    # X_train, X_test = X[train_ix, :], X[test_ix, :]
-    # y_train, y_test = y[train_ix], y[test_ix]
-    # configure the cross-validation procedure
-    # cv_inner = KFold(n_splits=3, shuffle=True, random_state=1)
-    # configure pipeline
-    # model = LogisticRegression()
-    # rfe = RFE(estimator=LogisticRegression())
-    # pipe = Pipeline(steps=[('rfe', rfe), ('model', model)])
-    # hyperparamater options
-    # n_features_to_select_options = np.arange(1,len(X[0])+1,1)
-    # c_options = [1, 10, 100, 1000]
-    # solver_options = ['newton-cg', 'lbfgs', 'liblinear']
-    # penalty = ['l2']
-    # parameter grid
-    # param_grid = [
-    # {
-    #'rfe__n_features_to_select': n_features_to_select_options,
-    #'model__C': c_options,
-    #'model__solver': solver_options,
-    #'model__penalty': penalty
-    # }
-    # ]
-    # define search
-    # search = GridSearchCV(pipe, n_jobs=1, param_grid=param_grid, cv=cv_inner, refit=True)
-    # execute search
-    # result = search.fit(X_train, y_train)
-    # get the best performing model fit on the whole training set
-    # best_model = result.best_estimator_
-    # evaluate model on the hold out dataset
-    # yhat = best_model.predict(X_test)
-    # evaluate the model
-    # accuracy = accuracy_score(y_test, yhat)
-    # store the result
-    # outer_results.append(accuracy)
-    # report progress
-    # print('>accuracy=%.3f, est=%.3f, cfg=%s' % (accuracy, result.best_score_, result.best_params_))
-    # summarize the estimated performance of the model
-    # print('accuracy: %.3f (%.3f)' % (mean(outer_results), std(outer_results)))
 
     if second_model:
         cv_outer = KFold(n_splits=10, shuffle=True, random_state=random_state)
