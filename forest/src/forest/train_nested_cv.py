@@ -257,7 +257,7 @@ def train_nested_cv(
         f1_logreg = f1_score(y_test, best_logreg.predict(X_test), average="macro")
         roc_auc_score_logreg.append(roc_logreg)
         accuracy_score_logreg.append(accuracy_logreg)
-        f1_score_logreg.append(f1_rf)
+        f1_score_logreg.append(f1_logreg)
 
         print("ROC AUC score: ", np.mean(roc_auc_score_logreg))
         print("Accuracy score: ", np.mean(accuracy_score_logreg))
