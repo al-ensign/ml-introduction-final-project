@@ -625,14 +625,14 @@ files = [
 
 [[package]]
 name = "mako"
-version = "1.2.0"
+version = "1.2.2"
 description = "A super-fast templating language that borrows the best ideas from the existing templating languages."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "Mako-1.2.0-py3-none-any.whl", hash = "sha256:23aab11fdbbb0f1051b93793a58323ff937e98e34aece1c4219675122e57e4ba"},
-    {file = "Mako-1.2.0.tar.gz", hash = "sha256:9a7c7e922b87db3686210cf49d5d767033a41d4010b284e747682c92bddd8b39"},
+    {file = "Mako-1.2.2-py3-none-any.whl", hash = "sha256:8efcb8004681b5f71d09c983ad5a9e6f5c40601a6ec469148753292abc0da534"},
+    {file = "Mako-1.2.2.tar.gz", hash = "sha256:3724869b363ba630a272a5f89f68c070352137b8fd1757650017b7e06fda163f"},
 ]
 
 [package.dependencies]
@@ -710,7 +710,6 @@ files = [
     {file = "MarkupSafe-2.1.1-cp39-cp39-win_amd64.whl", hash = "sha256:46d00d6cfecdde84d40e572d63735ef81423ad31184100411e6e3388d405e247"},
     {file = "MarkupSafe-2.1.1.tar.gz", hash = "sha256:7f91197cc9e48f989d12e4e6fbc46495c446636dfc81b9ccf50bb0ec74b91d4b"},
 ]
-
 
 [[package]]
 name = "matplotlib"
@@ -990,7 +989,6 @@ files = [
 llvmlite = ">=0.39.0dev0,<0.40"
 numpy = ">=1.18,<1.24"
 setuptools = "*"
-
 
 [[package]]
 name = "numpy"
@@ -1286,37 +1284,6 @@ files = [
 
 [package.extras]
 dev = ["pre-commit", "tox"]
-
-[[package]]
-name = "prometheus-client"
-version = "0.14.1"
-description = "Python client for the Prometheus monitoring system."
-category = "main"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "prometheus_client-0.14.1-py3-none-any.whl", hash = "sha256:522fded625282822a89e2773452f42df14b5a8e84a86433e3f8a189c1d54dc01"},
-    {file = "prometheus_client-0.14.1.tar.gz", hash = "sha256:5459c427624961076277fdc6dc50540e2bacb98eebde99886e59ec55ed92093a"},
-]
-
-[package.extras]
-twisted = ["twisted"]
-
-[[package]]
-name = "prometheus-flask-exporter"
-version = "0.20.1"
-description = "Prometheus metrics exporter for Flask"
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "prometheus_flask_exporter-0.20.1-py3-none-any.whl", hash = "sha256:83f2c2b2744650658addf1cf15e54d1be4fc1bd86cfb37660f3f352b09fd2c57"},
-    {file = "prometheus_flask_exporter-0.20.1.tar.gz", hash = "sha256:9a594b78ea10e282780ce6c4b127ae1cfa0a666b5ad150ba1bfb34c7aad2c7cc"},
-]
-
-[package.dependencies]
-flask = "*"
-prometheus-client = "*"
 
 [[package]]
 name = "protobuf"
@@ -1889,7 +1856,6 @@ others = ["lime"]
 plots = ["ipython", "matplotlib"]
 test = ["catboost", "lightgbm", "opencv-python", "pyod", "pyspark", "pytest", "pytest-cov", "pytest-mpl", "sentencepiece", "torch", "transformers", "xgboost"]
 
-
 [[package]]
 name = "six"
 version = "1.16.0"
@@ -2206,8 +2172,8 @@ category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "Werkzeug-2.1.2-py3-none-any.whl", hash = "sha256:72a4b735692dd3135217911cbeaa1be5fa3f62bffb8745c5215420a03dc55255"},
-    {file = "Werkzeug-2.1.2.tar.gz", hash = "sha256:1ce08e8093ed67d638d63879fd1ba3735817f7a80de3674d293f5984f25fb6e6"},
+    {file = "Werkzeug-2.2.3-py3-none-any.whl", hash = "sha256:56433961bc1f12533306c624f3be5e744389ac61d722175d543e1751285da612"},
+    {file = "Werkzeug-2.2.3.tar.gz", hash = "sha256:2e1ccc9417d4da358b9de6f174e3ac094391ea1d4fbef2d667865d819dfd0afe"},
 ]
 
 [package.dependencies]
@@ -2236,4 +2202,3 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 lock-version = "2.0"
 python-versions = "^3.9"
 content-hash = "0ed1dc89a1adcf59be97b73bcc4894bb7d101e9f50c5c09243e4d1a250a6fe7c"
-
