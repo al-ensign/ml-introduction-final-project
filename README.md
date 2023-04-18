@@ -1,4 +1,4 @@
-# Forest Cover Type Prediction - Capstone Project RS School ML Intro
+# Forest Cover Type Prediction - Capstone Project RS School ML Introduction Course
 
 ###### tags: `Python, Poetry`
 
