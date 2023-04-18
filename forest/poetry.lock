@@ -333,7 +333,6 @@ category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-
     {file = "GitPython-3.1.30-py3-none-any.whl", hash = "sha256:cd455b0000615c60e286208ba540271af9fe531fa6a87cc590a7298785ab2882"},
     {file = "GitPython-3.1.30.tar.gz", hash = "sha256:769c2d83e13f5d938b7688479da374c4e3d49f71549aaf462b646db9602ea6f8"},
 ]
@@ -1311,14 +1310,14 @@ files = [
 
 [[package]]
 name = "pyjwt"
-version = "2.3.0"
+version = "2.4.0"
 description = "JSON Web Token implementation in Python"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "PyJWT-2.3.0-py3-none-any.whl", hash = "sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f"},
-    {file = "PyJWT-2.3.0.tar.gz", hash = "sha256:b888b4d56f06f6dcd777210c334e69c737be74755d3e5e9ee3fe67dc18a0ee41"},
+    {file = "PyJWT-2.4.0-py3-none-any.whl", hash = "sha256:72d1d253f32dbd4f5c88eaf1fdc62f3a19f676ccbadb9dbc5d07e951b2b26daf"},
+    {file = "PyJWT-2.4.0.tar.gz", hash = "sha256:d42908208c699b3b973cbeb01a969ba6a96c821eefb1c5bfe4c390c01d67abba"},
 ]
 
 [package.extras]
@@ -1972,9 +1971,10 @@ category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "Werkzeug-2.2.3-py3-none-any.whl", hash = "sha256:56433961bc1f12533306c624f3be5e744389ac61d722175d543e1751285da612"},
-    {file = "Werkzeug-2.2.3.tar.gz", hash = "sha256:2e1ccc9417d4da358b9de6f174e3ac094391ea1d4fbef2d667865d819dfd0afe"},
+    {file = "Werkzeug-2.1.2-py3-none-any.whl", hash = "sha256:72a4b735692dd3135217911cbeaa1be5fa3f62bffb8745c5215420a03dc55255"},
+    {file = "Werkzeug-2.1.2.tar.gz", hash = "sha256:1ce08e8093ed67d638d63879fd1ba3735817f7a80de3674d293f5984f25fb6e6"},
 ]
+
 
 [package.dependencies]
 MarkupSafe = ">=2.1.1"
